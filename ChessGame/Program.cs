@@ -9,8 +9,7 @@
     }
     class Piece
     {
-        int xCordinate;
-        int yCordinate;
+        int xCordinate, yCordinate;
         bool black, mooved;    //mayby move (king Pawn Rook only);
         public Piece(int x, int y, bool black)
         {
