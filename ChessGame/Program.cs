@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            new ChessGame().play();
+             new ChessGame().play();
         }
     }
     class Piece
@@ -107,20 +107,10 @@
                 Console.Write((1 + i) + " │");
                 for (int j = 0; j < 8; j++)
                 {
-                    if (board[i, j] is King)
-                        Console.Write(" {0}K|", board[i, j].isBlack() ? "B" : "W");
-                    else if (board[i, j] is Queen)
-                        Console.Write(" {0}Q|", board[i, j].isBlack() ? "B" : "W");
-                    else if (board[i, j] is Rook)
-                        Console.Write(" {0}R|", board[i, j].isBlack() ? "B" : "W");
-                    else if (board[i, j] is Knight)
-                        Console.Write(" {0}N|", board[i, j].isBlack() ? "B" : "W");
-                    else if (board[i, j] is Bishop)
-                        Console.Write(" {0}B|", board[i, j].isBlack() ? "B" : "W");
-                    else if (board[i, j] is Pawn)
-                        Console.Write(" {0}P|", board[i, j].isBlack() ? "B" : "W");
-                    else
+                    if (board[i, j] == null)
                         Console.Write("   │");
+                    else
+                        Console.Write(" " + board[i, j] + "|");   
                 }
                 Console.Write((1 + i) + "\n  ");
                 if (i < 7)
@@ -559,6 +549,10 @@
                 }
             } while (!done);
         }
+        public override string ToString()
+        {
+            return isBlack() ? "BP" : "WP";
+        }
     }
     class Rook : Piece
     {
@@ -591,6 +585,10 @@
             }
             return false;
         }
+        public override string ToString()
+        {
+            return isBlack() ? "BR" : "WR";
+        }
     }
     class Knight : Piece
     {
@@ -602,6 +600,10 @@
             else if (Math.Abs(this.getX() - x) == 1 && Math.Abs(this.getY() - y) == 2 && (board.isCellEmpty(x, y) || board.isPieceBlack(x, y) != this.isBlack()))
                 return true;
             return false;
+        }
+        public override string ToString()
+        {
+            return isBlack() ? "BK" : "WK";
         }
     }
     class Bishop : Piece
@@ -634,6 +636,10 @@
             }
             return false;
         }
+        public override string ToString()
+        {
+            return isBlack() ? "BB" : "WB";
+        }
     }
     class Queen : Piece
     {
@@ -649,6 +655,10 @@
             else if (queenAsRook.isLegalMove(x, y, board))
                 return true;
             return false;
+        }
+        public override string ToString()
+        {
+            return isBlack() ? "BQ" : "WQ";
         }
     }
     class King : Piece
@@ -677,6 +687,10 @@
                 }
             }
             return false;
+        }
+        public override string ToString()
+        {
+            return isBlack() ? "BK" : "WK";
         }
     }
     class ChessGame
